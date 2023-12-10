@@ -270,13 +270,12 @@ async function task9() {
 // - Find the student who have the worst score for homework, the result should be [ { name: <name>, worst_homework_score: <score> } ]
 async function task10() {
   try {
-    // Aggregation pipeline to find the student with the worst homework score
     const pipeline = [
       {
-        $unwind: '$scores' // Split array into separate documents
+        $unwind: '$scores'
       },
       {
-        $match: { 'scores.type': 'homework' } // Filter to only include homework scores
+        $match: { 'scores.type': 'homework' }
       },
       {
         $group: {
